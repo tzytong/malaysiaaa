@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>马来西亚 • 视觉盛宴</title>
+  <style>
+    /* 重设基础 */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      /* 马来西亚国旗配色：蓝色背景 + 黄色 + 红白元素 */
+      background: linear-gradient(135deg, #0142b8 0%, #fcd116 100%);
+      color: #012169; /* 深蓝 */
+      overflow-x: hidden;
+    }
+
+    /* 顶部大幅视觉 */
+    .header {
+      position: relative;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .header img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.1);
+      transition: transform 20s linear;
+      filter: brightness(0.7);
+    }
+    .header:hover img {
+      transform: scale(1);
+    }
+    .header .overlay {
+      position: absolute;
+      top:0; left:0; right:0; bottom:0;
+      /* 叠加渐变采用国旗主色调 */
+      background: linear-gradient(to bottom, rgba(0,18,105,0.3), rgba(252,209,22,0.7));
+    }
+    .header .title {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: #fcd116; /* 国旗黄 */
+      animation: fadeInDown 1.2s ease-out;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    }
+    .header h1 {
+      font-size: 4em;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .header p {
+      margin-top: 0.5em;
+      font-size: 1.5em;
+      font-style: italic;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 卡片选项卡按钮 */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px;
+    }
+    .tabs button {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 50px;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 12px rgba(0,18,105,0.15);
+      color: #012169;
+      font-weight: 600;
+    }
+    .tabs button:hover {
+      transform: scale(1.05);
+      background: #fcd116;
+      color: #012169;
+      box-shadow: 0 6px 16px rgba(252,209,22,0.6);
+    }
+    .tabs button.active {
+      background: #fcd116;
+      color: #012169;
+      box-shadow: 0 6px 16px rgba(252,209,22,0.9);
+    }
+
+    /* 内容卡片样式 */
+    .tabcontent {
+      display: none;
+      max-width: 900px;
+      margin: 20px auto 40px;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(1,33,105,0.15);
+      animation: fadeInUp 0.8s ease;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .tabcontent img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+    .tabcontent .content {
+      padding: 24px;
+      line-height: 1.7;
+      font-size: 1.1em;
+      color: #012169;
+    }
+    .tabcontent h2 {
+      color: #fcd116;
+      margin-bottom: 12px;
+      text-shadow: 1px 1px 2px rgba(1,33,105,0.5);
+    }
+
+    /* 页脚 */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #fcd116;
+      font-weight: bold;
+      background: rgba(1,33,105,0.85);
+      backdrop-filter: blur(6px);
+      margin-top: 40px;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部视觉部分 -->
+  <div class="header">
+    <img src="https://media.gettyimages.com/id/568700477/zh/%E7%85%A7%E7%89%87/elevated-view-of-the-petronas-towers-at-dusk.jpg?s=1024x1024&w=gi&k=20&c=wt_DIJN-FlIDZleTkg_7KUGJnE07ySSRjC8twMSimSg=" alt="吉隆坡夜景" />
+    <div class="overlay"></div>
+    <div class="title">
+      <h1>马来西亚</h1>
+      <p>色彩斑斓的南国珠宝</p>
+    </div>
+  </div>
+
+  <!-- 简要介绍 -->
+  <p style="max-width:800px; margin: 30px auto; padding: 0 20px; text-align:center; font-size:1.2em;">
+    欢迎来到马来西亚——一个以绚丽多彩的文化、丰富热带风光与国际风味美食而闻名的东南亚国家。接下来，通过五个精致内容板块，带你开启一场视觉与信息的双重享受之旅。
+  </p>
+
+  <!-- 选项卡按钮 -->
+  <div class="tabs">
+    <button class="tablinks" onclick="openTab(event, '历史')">历史</button>
+    <button class="tablinks" onclick="openTab(event, '经济')">经济</button>
+    <button class="tablinks" onclick="openTab(event, '人口')">人口</button>
+    <button class="tablinks" onclick="openTab(event, '文化')">文化</button>
+    <button class="tablinks" onclick="openTab(event, '地理')">地理位置</button>
+  </div>
+
+  <!-- 历史内容 -->
+  <div id="历史" class="tabcontent">
+    <img src="https://media.gettyimages.com/id/946114378/zh/%E7%85%A7%E7%89%87/traditional-building-in-melakamalaysia.jpg?s=1024x1024&w=gi&k=20&c=-TAstNSaDfeJK8-EJV5mtF0dtkrxsCrqPa122SPwus0=" alt="马六甲王朝博物馆" />
+    <div class="content">
+      <h2>历史</h2>
+      <p>马来西亚的历史悠久而多元，最早可追溯至四万年前的原始人类定居，最初的居民是尼格利陀人。古代印度和中国文献中均有对马来半岛的记载，当时被称为“黄金半岛”。从7世纪到13世纪，三佛齐帝国统治着马来地区，是以佛教为主的海上贸易强国。
+
+14世纪末，拜里米苏拉在马六甲建立了苏丹王朝，使马六甲成为东西方贸易的重要枢纽，也让伊斯兰教迅速传播。1511年，葡萄牙占领马六甲，开启了长达数百年的殖民统治，随后荷兰在1641年接管，1824年英国通过条约彻底掌控马来半岛及婆罗洲部分地区。
+
+在二战后，马来亚争取独立的运动逐渐兴起。1957年8月31日，马来亚联合邦正式宣布独立，1963年，马来亚与沙巴、砂拉越和新加坡组成马来西亚联邦（新加坡于1965年退出）。独立后，马来西亚通过多项政策推动工业化与现代化，在多元文化基础上不断发展，成为东南亚重要的国家之一。</p>
+    </div>
+  </div>
+
+  <!-- 经济内容 -->
+  <div id="经济" class="tabcontent">
+    <img src="https://media.istockphoto.com/id/517972764/zh/%E7%85%A7%E7%89%87/kuala-lumpur-urban-scene-malaysia.jpg?s=2048x2048&w=is&k=20&c=n_AX4ap2pT5ywnjKRJif4S77g4ZoHdZY0GjhuowW734=" alt="吉隆坡双子塔" />
+    <div class="content">
+      <h2>经济</h2>
+      <p>马来西亚拥有开放且多元化的市场经济，经济结构由农业、制造业逐步转向服务业和高科技产业。得益于丰富的自然资源如石油、橡胶和棕榈油，马来西亚曾是世界最大的锡和棕榈油生产国之一。近年来，制造业和电子工业迅速发展，成为推动经济增长的重要动力。政府积极推动工业化和出口导向型经济政策，提升基础设施建设和投资环境，使国家经济保持稳定增长。旅游业作为第三大外汇收入来源，也为经济贡献显著。尽管经济发展迅速，种族和区域间的不平等问题依然存在，政府正致力于通过政策缩小差距，实现更全面的繁荣。</p>
+    </div>
+  </div>
+
+  <!-- 人口内容 -->
+  <div id="人口" class="tabcontent">
+    <img src="https://media.gettyimages.com/id/1475323914/zh/%E7%85%A7%E7%89%87/colorful-steps-leading-to-the-top-of-kuala-lumpurs-batu-caves.jpg?s=1024x1024&w=gi&k=20&c=3mxYMrCBrf9XXbexKOrM9V9pT2TAEnBfRnzntefxuyI=" alt="巴图洞" />
+    <div class="content">
+      <h2>人口</h2>
+      <p>马来西亚人口多元且复杂，主要由马来族、华族、印度族以及各土著民族组成。马来族约占总人口的58%，华族约23%，印度族约7%，其余为其他土著和少数民族。各族群在文化、语言和宗教上各具特色，形成丰富的社会面貌。人口主要集中在半岛西海岸及首都吉隆坡附近，城市化水平较高，约70%人口居住在城市地区。近年来，外籍劳工数量增长，约占总人口的10%，为国家经济发展提供了重要劳动力支持。尽管民族多样，但马来西亚保持较为和谐的民族关系，政府也不断推动社会融合与平衡发展。</p>
+    </div>
+  </div>
+
+  <!-- 文化内容 -->
+  <div id="文化" class="tabcontent">
+    <img src="https://media.istockphoto.com/id/526149515/zh/%E7%85%A7%E7%89%87/nasi-lemak-malaysian-cuisine.jpg?s=2048x2048&w=is&k=20&c=FWLAoabdFy2R2LCcilIuGaq9FRORUxMxu31p0y3DtqI=" alt="椰浆饭" />
+    <div class="content">
+      <h2>文化</h2>
+      <p>马来西亚文化交融，马人庆祝开斋节、华人农历新年，印度人屠妖节，还有美食代表：椰浆饭、沙爹、咖喱叻沙，每一口都是融合与创新的味道马来西亚拥有丰富多元的文化，是多民族融合的典范。主要民族包括马来人、华人、印度人以及众多原住民，各自保留独特的传统习俗、语言和宗教信仰。伊斯兰教作为国家主要宗教，对文化生活影响深远，同时佛教、印度教和基督教等宗教也广泛存在。传统艺术形式丰富，包括马来传统舞蹈、华人狮舞和印度古典舞等。节庆活动多样，诸如开斋节、农历新年和屠妖节等，都体现了各族群的文化特色。马来西亚政府鼓励文化保护与多元共存，使得这个国家的文化呈现出独特而和谐的面貌。。</p>
+    </div>
+  </div>
+
+  <!-- 地理位置内容 -->
+  <div id="地理" class="tabcontent">
+    <img src="https://media.gettyimages.com/id/185126544/zh/%E7%85%A7%E7%89%87/indonesia-map.jpg?s=1024x1024&w=gi&k=20&c=BtHTmpe3wAePlsXGNIl5pVbQR4Y_7RjnNDx-UTeJcRc=" alt="马来西亚地理位置图" />
+    <div class="content">
+      <h2>地理位置</h2>
+      <p>马来西亚位于东南亚，横跨赤道北部，地理位置独特，分为西马和东马两部分。西马位于马来半岛南端，东马则位于婆罗洲岛北部，两部分由南中国海隔开。西马北接泰国，南邻新加坡，东马则与印尼和文莱接壤。马来西亚拥有长达近四千公里的海岸线，地形多样，从热带雨林、山脉到广阔的海滩。其战略位置使得马六甲海峡成为世界最重要的航运通道之一，连接着印度洋与太平洋，具有极高的国际贸易和地缘政治价值。位于赤道附近，由西马与东马两部分构成，中间为南中国海。气候热带多雨，有热带雨林、高山与美丽海岸。京那巴鲁山为全国最高峰，也是多样生态的象征。</p>
+    </div>
+  </div>
+
+  <!-- JavaScript 控制选项卡 -->
+  <script>
+    function openTab(evt, name) {
+      document.querySelectorAll('.tabcontent').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+      document.getElementById(name).style.display = 'block';
+      evt.currentTarget.classList.add('active');
+    }
+    window.onload = () => document.querySelector('.tablinks').click();
+  </script>
+
+  <!-- 页脚 -->
+  <footer>
+    &copy; 2025 •  by 15 ISABELL TEE SR2B
+  </footer>
+
+</body>
+</html>
+
